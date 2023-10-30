@@ -22,8 +22,6 @@ if(isset($_GET["uid"])) {
     exit;
 }
 
-// var_dump($devices[0]["id"]);die;
-
 if(isset($_GET["did"])) {
     $inputs = query("SELECT * FROM inputs WHERE devices_id = " . $_GET['did']);
 }
@@ -34,9 +32,6 @@ if(isset($_POST['create-schedule'])) {
     $type = explode(" ", $_POST['type'])[1];
     $datetime = explode("T", $_POST['datetime'])[0] . " " . explode("T", $_POST['datetime'])[1];
     
-    // var_dump($devices_id);die;
-
-    // var_dump($type);die;
     if(isset($_GET["did"])) {
         $devices_id = $_GET['did'];
         updateData("INSERT INTO schedules 
@@ -61,65 +56,6 @@ if(isset($_POST['edit_input'])) {
 
 
 <?php include 'templates/sidebar.php' ?>
-<!-- <style>
-    @media (max-width: 1024px) {
-        .service {
-            flex-wrap: wrap;
-        }
-    }
-    
-    @media (max-width: 768px) {
-        .main-section {
-            left: 0;
-        }
-        .main-section header .main-section-right {
-            display: none;
-        }
-        img.menu {
-            width: 8%;
-            display: block;
-        }
-        .sidebar {
-            left: -60%;
-            width: 45%;
-            z-index: 9999;
-            transition: left 0.3s ease;
-        }
-        .sidebar.show {
-            left: 0;
-        }
-        .create .create-device, .create .create-input {
-            width: 50%;
-        }
-        .all-device {
-            flex-wrap: wrap;
-        }
-        .device-card {
-            font-size: 0.8125rem;
-            width: 100%;
-            margin: 10px 0 0;
-
-        }
-        .service .input {
-            width: 100%;
-            font-size: 0.8125rem;
-        }
-        .data-sensor {
-            width: 100%;
-            margin: 10px 0 0;
-        }
-        .data-sensor .data-sensor-card {
-            width: 100%;
-        }
-        .schedule-box {
-            width: 100%;
-            margin: 10px 0 0px;
-        }
-        .popup-create-service {
-            width: 90%;
-        }
-    }
-</style> -->
 
 <div class="main-section">
     <?php include 'templates/main_section_header.php' ?>

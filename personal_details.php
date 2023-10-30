@@ -80,33 +80,20 @@ if(isset($_POST['save'])) {
         .second-information div {
             align-items: start;
             flex-direction: column;
-/*            margin: 0;*/
         }
         .second-information div input {
             margin: 15px 0 0;
             width: 93%;
         }
         .second-information .last-information input {
-/*            width: 90%;*/
             margin-bottom: 30px;
-/*            margin-right: 0;*/
         }
         .second-information .last-information input:last-child {
             margin-bottom: 0;
         }
         .user-profile form button {
-/*            background-color: #28BB8E;*/
-/*            color: #fff;*/
-/*            font-weight: bold;*/
-/*            border-radius: 20px;*/
             width: 100%;
-/*            font-size: 1rem;*/
-/*            border: none;*/
-/*            box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.15);*/
-/*            padding: 15px 0;*/
             position: unset;
-/*            right: 30px;*/
-/*            bottom: 30px;*/
         }
     }
 </style>

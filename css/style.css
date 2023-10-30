@@ -270,13 +270,9 @@ td, th {
     font-size: 0.875rem;
 }
 table tr td.location {
-    /* width: 35%; */
     width: 30%;
     line-height: 23px;
     max-height: 3em; /* Set the maximum height to three lines */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    /* white-space: nowrap; */
 }
 table tr td.action img {
     width: 20px;
@@ -679,7 +675,8 @@ input.switch-button:checked + .slider::before {
     color: #7C7C7C;
 }
 .schedule-box {
-    /* width: 22%; */
+    max-height: 51vh;
+    overflow-y: auto;
     width: 30%;
     background-color: #fff;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.10);
@@ -688,8 +685,13 @@ input.switch-button:checked + .slider::before {
     border-radius: 10px;
     font-size: 0.875rem;
     position: relative;
-    /* background-color: green; */
+    box-sizing: content-box;
+/*     background-color: green; */
 }
+*::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
 .schedule-box .all-schedule {
     display: flex;
     flex-wrap: wrap;

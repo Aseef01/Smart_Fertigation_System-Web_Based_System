@@ -1,14 +1,11 @@
 <?php include 'templates/header.php';
 
-// var_dump($_COOKIE['user']);die;
 if (!isset($_SESSION['user']) || $_SESSION['roles'] != 'admin') {
-    header('Location: index.php'); // Redirect to the login page if not logged in
+    header('Location: index.php');
     exit();
 }
 
 $users = query("SELECT * FROM users WHERE id <> " . $_SESSION['aid']);
-
-// var_dump($users);die;
 
 if(isset($_GET['search'])) {
     $key = $_GET['key'];
@@ -18,6 +15,23 @@ if(isset($_GET['search'])) {
 ?>
 
 <?php include 'templates/sidebar.php' ?>
+
+<style>
+    @media (max-width: 768px) {
+        form.search-box .search {
+            width: 56%;
+        }
+        .users-information-box {
+            overflow-x: scroll;
+        }
+        table {
+            width: 360%;
+        }
+        table tr td.location {
+            width: 30%; 
+        }
+    }
+</style>
 
 <div class="main-section">
     <?php include 'templates/main_section_header.php' ?>

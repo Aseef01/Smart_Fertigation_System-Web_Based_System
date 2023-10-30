@@ -11,7 +11,7 @@ if(isset($_GET['did'])) {
 // var_dump($devices);die;
 $result = [
     "inputs" => query("SELECT * FROM inputs WHERE devices_id = " . $devices['id']),
-    "schedules" => query("SELECT * FROM schedules WHERE devices_id = " . $devices['id'] . " ORDER BY datetime"),
+    "schedules" => schedules(query("SELECT * FROM schedules WHERE devices_id = " . $devices['id'] . " ORDER BY datetime")),
     "sensors" => explodeSensor(query("SELECT * FROM data_sensors WHERE devices_id = " . $devices['id'] . " ORDER BY id DESC")),
 ];
 

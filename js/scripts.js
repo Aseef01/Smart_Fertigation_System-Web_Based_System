@@ -46,6 +46,7 @@ $(document).ready(function() {
                 }
 
                 let sensorBox = ``;
+                
                 if (typeof sensors === 'string')  {
                     sensorBox = `<div class="data-sensor-card available">
                         <span>${sensors}</span>
@@ -66,6 +67,7 @@ $(document).ready(function() {
                 }
                 
                 let scheduleBox = ``;
+
                 if (typeof schedules === 'string')  {
                     scheduleBox = `<div class="hst available">
                         <span>${schedules}</span>
@@ -76,7 +78,7 @@ $(document).ready(function() {
                         let parts = schedule.datetime.split(" ");
                         scheduleBox = `<div class="hst active">
                             <div class="hst-actions">
-                                <h3>HST-1</h3>
+                                <h3>${schedule.hst}</h3>
                                 <div>
                                     <img src="images/icons/dustbin-icon.png" data-id="${schedule.id}" class="remove-schedule">
                                 </div>

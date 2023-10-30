@@ -1,5 +1,10 @@
 <?php
 
+// header("Access-Control-Allow-Origin: https://i-sfs.forotify.com");
+// // header("Access-Control-Allow-Origin: http://localhost");
+// header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+// header("Access-Control-Allow-Headers: Content-Type");
+
 // Global configuration
 session_start();
 ob_start();
@@ -71,10 +76,6 @@ function validate($data) {
     // }
 
     $name = explode(' ', $user[0]["full_name"]);
-    // setcookie('user', $name[0] . " " . $name[1], time() + 3600, '/');
-    // setcookie('user', $name[0] . " " . $name[1]);
-    // setcookie('roles', $user[0]["roles"]);
-    // setcookie('aid', $user[0]["id"]);
 
     $_SESSION['user'] = $name[0] . " " . $name[1];
     $_SESSION['roles'] = $user[0]["roles"];
@@ -86,4 +87,40 @@ function validate($data) {
     }
     header('Location: user_management_page.php');
     exit();
+}
+
+function schedules($schedules) {
+    $list_schedule = [];
+
+    foreach($schedules as $schedule) {
+        $date = explode(" ", $schedule["datetime"]);
+        $list_schedule[] = $date[0];
+    }
+
+    $new_list_schedule = [];
+
+    foreach($list_schedule as $key => $value) {
+        $hstCounter = 1;
+
+        $value = strtotime($value) - strtotime($list_schedule[0]);
+
+        while($value != 0) {
+            $hstCounter++;
+            $value = $value - 86400;
+        }
+        $new_list_schedule[] = [
+                "id" => $schedules[$key]["id"],
+                "devices_id" => $schedules[$key]["devices_id"],
+                "inputs_id" => $schedules[$key]["inputs_id"],
+                "hst" => "HST-" . $hstCounter,
+                "datetime" => $schedules[$key]["datetime"],
+                "duration" => $schedules[$key]["duration"],
+                "type" => $schedules[$key]["type"],
+                "status" => $schedules[$key]["status"],
+                "created_at" => $schedules[$key]["created_at"],
+                "updated_at" => $schedules[$key]["updated_at"]
+            ]; 
+    }
+
+    return $new_list_schedule;
 }
