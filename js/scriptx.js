@@ -15,9 +15,20 @@ $(document).ready(function() {
                 let schedules = data.schedules;
                 // console.log(inputs[0].id);
 
-                $('.all-input').html('');
+                // $('.all-input').html('');
                 $('.all-data-sensor').html('');
                 $('.all-schedule').html('');
+
+                $(".manual-setting").on("click", function() {
+                    $('.all-input').toggleClass("manual");
+                    let currentText = $(".manual-setting").text();
+
+                    if(currentText == "Auto Setting") {
+                        $(".manual-setting").text("Manual Setting");
+                    } else {
+                        $(".manual-setting").text("Auto Setting");
+                    }
+                });
 
                 let inputBox = ``;
                 if (typeof inputs === 'string')  {
@@ -26,23 +37,54 @@ $(document).ready(function() {
                                     </div>`;
                     $('.all-input').append(inputBox);
                 } else {
-                    inputs.forEach(function(input) {
-                        inputBox = `<div class="input-card">
-                            <div class="input-card-top">
-                                <span class="title-input">${(input.name == "Sulam") ? "Irrigation Water" : "Irrigation Fertilizer"}</span>
-                                <div class="input-card-actions">
-                                    <label class="switch">
-                                        <input type="checkbox" class="switch-button" data-id="${input.id}" name="${input.name}" value="${input.status}" ${(input.status == 1) ? 'checked' : ''}>
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <img src="images/icons/edit-icon.png" class="edit-input-control" data-id="${input.id}">
-                                </div>
-                            </div>
-                            <span class="duration">Duration: ${input.duration} minutes</span>
-                        </div>`;
-                        
-                        $('.all-input').append(inputBox);
-                    });
+                    if($('.all-input').hasClass('manual')) {
+                        $('.all-input').html('');
+                        inputs.forEach(function(input) {
+                            if(input.name != "Irrigation Water" && input.name != "Irrigation Fertilizer") {
+                                inputBox = `<div class="input-card">
+                                    <div class="input-card-top">
+                                        <span class="title-input">${input.name}</span>
+                                        <div class="input-card-actions">
+                                            <label class="switch">
+                                                <input type="checkbox" class="switch-button" data-id="${input.id}" name="${input.name}" value="${input.status}" ${(input.status == 1) ? 'checked' : ''}>
+                                                <span class="slider round"></span>
+                                            </label>
+                                            <img src="images/icons/edit-icon.png" class="edit-input-control" data-id="${input.id}">
+                                        </div>
+                                    </div>
+                                    <span class="duration">Duration: ${input.duration} minutes</span>
+                                </div>`;
+                                
+                                $('.all-input').append(inputBox);
+                            }
+                        });
+                    } else {
+                        $('.all-input').html('');
+                        inputs.forEach(function(input) {
+                            // if(input.name !== "Irrigation Water") {
+                            //     console.log("not same");
+                            // } else {
+                            //     console.log("same");
+                            // }
+                            if(input.name == "Irrigation Water" || input.name == "Irrigation Fertilizer") {
+                                inputBox = `<div class="input-card">
+                                    <div class="input-card-top">
+                                        <span class="title-input">${input.name}</span>
+                                        <div class="input-card-actions">
+                                            <label class="switch">
+                                                <input type="checkbox" class="switch-button" data-id="${input.id}" name="${input.name}" value="${input.status}" ${(input.status == 1) ? 'checked' : ''}>
+                                                <span class="slider round"></span>
+                                            </label>
+                                            <img src="images/icons/edit-icon.png" class="edit-input-control" data-id="${input.id}">
+                                        </div>
+                                    </div>
+                                    <span class="duration">Duration: ${input.duration} minutes</span>
+                                </div>`;
+                                
+                                $('.all-input').append(inputBox);
+                            }
+                        });
+                    }
                 }
 
                 let sensorBox = ``;
@@ -86,7 +128,7 @@ $(document).ready(function() {
                             <div class="time">
                                 <span class="date"><span class="schedule-bold">Date:</span> ${parts[0]}</span>
                                 <span class="masa"><span class="schedule-bold">Time:</span> ${parts[1]}.00</span>
-                                <span class="type"><span class="schedule-bold">Task:</span> ${(schedule.type == "Sulam") ? "Irrigation Water" : "Irrigation Fertilizer"}</span>
+                                <span class="type"><span class="schedule-bold">Task:</span> ${schedule.type}</span>
                             </div>
                         </div>`;
                         
@@ -241,7 +283,7 @@ $(document).ready(function() {
                         <div class="popup-input">
                             <label for="type">Select type:</label>
                             <select name="type" id="type" required>
-                                ${inputs.map(element => `<option value="${element.id} ${element.name}">${(element.name == "Sulam") ? "Irrigation Water" : "Irrigation Fertilizer"}</option>`).join('')}
+                                ${inputs.map(element => (element.name == "Irrigation Water" || element.name == "Irrigation Fertilizer") ? `<option value="${element.id} ${element.name}">${element.name}</option>` : '').join('')}
                             </select>
                         </div>
                         <div class="popup-btn">

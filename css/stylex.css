@@ -523,21 +523,41 @@ table tr td.action a:nth-child(odd) {
 .service .input {
     position: relative;
     width: 25%;
-    padding: 20px;
+/*    padding: 20px;*/
     border-radius: 10px;
     background-color: #fff;
     margin-top: 10px;
     font-size: 0.875rem;
     box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.10);
+/*    max-height: 51vh;*/
+/*    overflow-y: auto;*/
 }
 .service .input .input-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 20px 20px 10px;
 }
 .service .input .input-header img {
     width: 15px;
     cursor: pointer;
+}
+.service .input .input-header .input-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+/*    background-color: red;*/
+    width: 50%;
+}
+.service .input .input-header .input-actions .manual-setting {
+    font-size: 0.825rem;
+    color: blue;
+    cursor: pointer;
+}
+.all-input {
+/*    background-color: red;*/
+    max-height: 51vh;
+    overflow-y: auto;
 }
 .service .input .input-card.available {
     position: absolute;
@@ -550,7 +570,7 @@ table tr td.action a:nth-child(odd) {
 }
 .service .input .input-card {
     border-radius: 10px;
-    margin-top: 20px;
+    margin: 10px 20px 20px;
     padding: 20px;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.15);
 }

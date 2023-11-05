@@ -88,9 +88,12 @@ if(isset($_POST['edit_input'])) {
             <div class="input">
                 <div class="input-header">
                     <h1>Input</h1>
-                    <?php if($_SESSION['roles'] == 'admin') : ?>
-                    <img src="images/icons/add-icon-black.png" class="add-service">
-                    <?php endif; ?>
+                    <div class="input-actions">
+                        <span class="manual-setting">Manual Setting</span>
+                        <?php if($_SESSION['roles'] == 'admin') : ?>
+                        <img src="images/icons/add-icon-black.png" class="add-service">
+                        <?php endif; ?>
+                    </div>
                 </div>
                 <?//php if(!is_array($inputs)) : ?>
                     <!-- <div class="input-card available">
